@@ -1,4 +1,3 @@
-
 // C Program to pass an array to a function
 #include <stdio.h>
 
@@ -10,18 +9,15 @@ void printArray(int arr[])
         printf("%d ",arr[i]);
     }
 }
-
 // driver code
 int main()
 {
-
     int arr[5];
     int *ptr = &arr[0];
     printf("Enter the elements of array:\n");
     for(int i=0; i<5; i++){
         scanf("%d",ptr+i);
     }
-
     printf("Size of Array in main(): %d\n", sizeof(arr));
     printArray(arr); // we have to write name of the array while calling function and passing array
     return 0;

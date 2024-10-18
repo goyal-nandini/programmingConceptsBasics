@@ -10,11 +10,9 @@
 // reverseArray
 #include <stdio.h>
 
-
 void getArray(int arr[], int size);
 void traverseArray(int arr[], int size);
 void insertArray(int arr[], int size, int pos, int item);
-
 
 int main(){
     int choice, N, arr[N];
@@ -67,6 +65,7 @@ void traverseArray(int arr[], int size){
     }
 }
 void insertArray(int arr[], int size, int pos, int item){
+    
     
      
 }
