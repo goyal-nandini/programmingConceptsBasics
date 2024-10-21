@@ -67,15 +67,14 @@ int main(){
                         traverseList();
                         break;
                     case 3:
-                        countNode();
                         insertAfter();
-                        printf("The new linked list is(after inserting node next to another node):\n");
-                        traverseList();
+                        // printf("The new linked list is(after inserting node next to another node):\n");
+                        // traverseList();
                         break;
                     case 4:
                         insertBefore();
-                        printf("The new linked list is(after inserting node before another node):\n");
-                        traverseList();
+                        // printf("The new linked list is(after inserting node before another node):\n");
+                        // traverseList();
                         break;            
                     default:
                         printf("Invalid Choice! Please enter valid number.");
@@ -242,13 +241,15 @@ void insertAfter(){
         newnode -> next = temp -> next;
         temp -> next = newnode;
     }
+    printf("The new linked list is(after inserting node after position %d):\n", pos);
+    traverseList();
 }
 
 void insertBefore(){
     int pos, i = 1;
     printf("\nEnter position: ");
     scanf("%d", &pos);
-    if(pos > count+1 || pos < 1){
+    if(pos > count+1 || pos <= 1){
         printf("Invalid Position!\n");
         return;
     } else {
@@ -263,6 +264,8 @@ void insertBefore(){
         newnode -> next = temp -> next;
         temp -> next = newnode;
     }
+    printf("The new linked list is(after inserting node before postion %d):\n", pos);
+    traverseList();
 }
 
 void deleteBeg(){
