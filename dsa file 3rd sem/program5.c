@@ -105,7 +105,7 @@ void pushArray() {
             top++;
             stack[top] = value;
             printf("%d pushed to stack.\n", value);
-        }     
+        }    
     }
 }
 
