@@ -21,7 +21,7 @@ void deleteBeg();
 void deleteEnd();
 void deleteFromPos();
 void reverseList();
-void countNode();
+int countNode();
 
 struct node{
     int data;
@@ -35,7 +35,7 @@ int main(){
     do{
         printf("Welcome to the menu driven program!\nYou have to set values to get started.\n");
         createList();
-        printf("Instructions:\nPress 1 for traversing the Linked List,\n2 for inerting node in the list,\n3 for deleting node from the list,\n4 to know the number of nodes in the linked list and\n0 to exit the program.");
+        printf("Instructions:\nPress 1 for traversing the Linked List,\n2 for inerting node in the list,\n3 for deleting node from the list,\n4 for reversing the linked list,\n5 to know the number of nodes in the linked list and\n0 to exit the program.");
     
         do{
 
@@ -115,7 +115,7 @@ int main(){
                 traverseList();
                 break; 
             case 5:
-                countNode();
+                printf("The number of nodes are: %d\n", countNode());
                 break;       
             case 0:
                 printf("\nExiting the program.");  
@@ -182,7 +182,7 @@ void traverseList(){
     printf("\n");
 }
 
-void countNode(){
+int countNode(){
     temp = head;
     count = 0;
     while(temp != NULL){
@@ -190,7 +190,8 @@ void countNode(){
         count ++;
         temp = temp -> next;
     }
-    printf("The number of nodes are: %d\n", count);
+    // printf("The number of nodes are: %d\n", count);
+    return count;
 }
 
 void insertBeg(){
@@ -226,9 +227,11 @@ void insertAfter(){
     int pos, i = 1;
     printf("\nEnter position: ");
     scanf("%d", &pos);
-    if(pos > count || pos < 1){
+    if(pos > countNode() || pos < 1){
         printf("Invalid Position!\n");
         return;
+    } else if(pos == count){
+        insertEnd();
     } else {
         temp = head;
         while(i < pos){
@@ -249,9 +252,11 @@ void insertBefore(){
     int pos, i = 1;
     printf("\nEnter position: ");
     scanf("%d", &pos);
-    if(pos > count+1 || pos <= 1){
+    if(pos > countNode() || pos < 1){
         printf("Invalid Position!\n");
         return;
+    } else if(pos == 1){
+        insertBeg();
     } else {
         temp = head;
         while(i < pos-1){
@@ -311,8 +316,14 @@ void deleteFromPos(){
     printf("Enter position: ");
     scanf("%d",&pos);
     // Check if the position is valid
-    if (pos < 1 || pos > count) {
+    if (pos < 1 || pos > countNode()) {
         printf("Invalid position!\n");
+        return;
+    } else if(pos == 1){
+        deleteBeg();
+        return;
+    } else if(pos == countNode()){
+        deleteEnd();
         return;
     } else {
         ptr = head;
@@ -321,7 +332,6 @@ void deleteFromPos(){
             i++;
         }
     }
-    
     nextnode = ptr -> next;
     ptr -> next = nextnode -> next;
     free(nextnode);

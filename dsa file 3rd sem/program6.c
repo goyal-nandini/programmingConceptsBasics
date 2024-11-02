@@ -59,7 +59,7 @@ void menu() {
     printf("Enter your choice: ");
 }
 
-#define N 5
+#define N 100
 int queue[N], front = -1, rear = -1;
 
 void enqueueArray(){
@@ -68,6 +68,7 @@ void enqueueArray(){
     while(1){
         if(rear == N-1){
             printf("Queue Overflow!");
+            break;
         } else if(front == -1 && rear == -1){
             // printf("Enter value to enqueue: ");
             scanf("%d", &value);
@@ -89,10 +90,12 @@ void dequeueArray(){
     if(front == -1 && rear == -1){
         printf("Queue Underflow!");
     } else if(front == rear){
-        front = rear -1;
+        // Only one element left in the queue
+        printf("%d value is dequeued from the queue!!", queue[front]);
+        front = rear = -1;
     } else{
+        printf("%d value is dequeued from the queue.", queue[front]);
         front++;
-        printf("%d value dequeued.", queue[front]);
     }
 }
 void displayArray(){
@@ -100,7 +103,7 @@ void displayArray(){
         printf("The queue is empty.");
     } else{
         printf("The elements of queue are: ");
-        for(int i = front; i < rear +1; i++){
+        for(int i = front; i < rear + 1; i++){
             printf("%d ", queue[i]);
         }
         printf("\n");
@@ -150,6 +153,11 @@ void dequeueLinkedList(){
         printf("%d is dequeued from the queue.", frontLL -> data);
         frontLL = frontLL -> next;
         free(temp);
+        
+        // If the queue becomes empty after dequeuing, set rearLL to NULL
+        if (frontLL == NULL) {
+            rearLL = NULL;
+        }
     }
 }
 
@@ -159,7 +167,7 @@ void displayLinkedList(){
         printf("Queue is empty.");
     } else{
         temp = frontLL;
-        printf("The elemets of the queue are: ");
+        printf("The elements of the queue are: ");
         while(temp != NULL){
             printf("%d ", temp -> data);
             temp = temp -> next;
