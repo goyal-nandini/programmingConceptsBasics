@@ -166,25 +166,39 @@ void deleteElement(int arr[],int *size, int pos){
     }
 }
 
-void searchElement(int arr[], int size, int ele){
-    int first = 0;
-    int last = size-1;
-    int middle = (first+last)/2;
-    while(first <= last){
-        if(arr[middle] < ele){
-            first = middle+1;
-        } else if(arr[middle] == ele){
-            printf("The element %d found at %d\n", ele, middle+1);
+void searchElement(int arr[], int size, int ele) {
+    int found = 0;
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == ele) {
+            printf("The element %d found at position %d\n", ele, i + 1);
+            found = 1;
             break;
-        } else {
-            last = middle-1;
-        }
-        middle = (first + last)/2;
-        if(first > last){
-            printf("The element %d not found!\n", ele);
         }
     }
+    if (!found) {
+        printf("The element %d not found!\n", ele);
+    }
 }
+
+// void searchElement(int arr[], int size, int ele){
+//     int first = 0;
+//     int last = size-1;
+//     int middle = (first+last)/2;
+//     while(first <= last){
+//         if(arr[middle] < ele){
+//             first = middle+1;
+//         } else if(arr[middle] == ele){
+//             printf("The element %d found at %d\n", ele, middle+1);
+//             break;
+//         } else {
+//             last = middle-1;
+//         }
+//         middle = (first + last)/2;
+//         if(first > last){
+//             printf("The element %d not found!\n", ele);
+//         }
+//     }
+// }
 
 void reverseArray(int arr[], int size){
     // for(int i=0; i<size/2; i++){

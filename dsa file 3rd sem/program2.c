@@ -154,12 +154,12 @@ void subMatrix(int r, int c, int mat[r][c], int mat1[r][c], int mat2[r][c])
             mat[i][j] = mat1[i][j] - mat2[i][j];
     }
 }
-void transposeMatrix(int r, int c, int matT[r][c], int mat[r][c])
+void transposeMatrix(int r, int c, int matT[c][r], int mat[r][c])
 {
     for (i = 0; i < r; i++)
     {
         for (j = 0; j < c; j++)
-            matT[i][j] = mat[i][j];
+            matT[j][i] = mat[i][j];
     }
 }
 void productMatrix(int r1, int c2, int mat[r1][c2], int mat1[r1][c2], int mat2[r1][c2])

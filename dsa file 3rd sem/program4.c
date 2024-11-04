@@ -2,12 +2,6 @@
 // insertion, deletion, reversal and traversal operations. The program should enable 
 // the user to select and execute various operations on the list
 
-// createList;
-// traverseList;(or print, display)
-// insertNode;
-// deleteNode;
-// reverseList;
-
 #include <stdio.h>
 #include<stdlib.h>
 
@@ -15,8 +9,7 @@ void createList();
 void traverseList();
 void insertBeg();
 void insertEnd();
-void insertAfter();
-void insertBefore();
+void insertAtPos();
 void deleteBeg();
 void deleteEnd();
 void deleteFromPos();
@@ -61,15 +54,15 @@ int main(){
                         traverseList();
                         break;
                     case 3:
-                        insertAfter();
+                        insertAtPos();
                         // printf("The new linked list is(after inserting node next to another node):\n");
                         // traverseList();
                         break;
-                    case 4:
-                        insertBefore();
-                        // printf("The new linked list is(after inserting node before another node):\n");
-                        // traverseList();
-                        break;            
+                    // case 4:
+                    //     insertBefore();
+                    //     // printf("The new linked list is(after inserting node before another node):\n");
+                    //     // traverseList();
+                    //     break;            
                     default:
                         printf("Invalid Choice! Please enter valid number.");
                         break;
@@ -131,7 +124,7 @@ struct node{
     int data;
     struct node *next;
 };
-    struct node *tail, *newnode, *temp;
+    struct node *tail, *newnode;
     int choice = 1, count = 0;
 
 void createList(){
@@ -168,7 +161,7 @@ void traverseList(){
 }
 
 int countNode(){
-    temp = tail->next;
+    struct node *temp = tail->next;
     count = 0;
     while(temp != tail){
         // printf("%d ", temp -> data);
@@ -180,23 +173,136 @@ int countNode(){
 
 }
 void insertBeg(){
-
+    newnode = (struct node*)malloc(sizeof(struct node));
+    printf("Enter data to insert at beginning: ");
+    scanf("%d", &newnode->data);
+    newnode -> next = 0;
+    if(tail == 0){
+        tail = newnode;
+        tail -> next = newnode;
+    } else {
+        newnode -> next = tail -> next;
+        tail -> next = newnode;
+    }
+    printf("The new list after inserting element %d at the beginning is:\n",newnode->data);
+    traverseList();
 }
 void insertEnd(){
-
+    newnode = (struct node*)malloc(sizeof(struct node));
+    printf("Enter data to insert at end: ");
+    scanf("%d", &newnode->data);
+    newnode -> next = 0;
+    if(tail == 0){
+        tail = newnode;
+        tail -> next = newnode;
+    } else {
+        newnode -> next = tail -> next;
+        tail -> next = newnode;
+        tail = newnode;
+    }
+    printf("The new list after inserting element %d at the end is:\n",newnode->data);
+    traverseList();
 }
 void insertAtPos(){
-
+    struct node *temp, *newnode;
+    int pos, i=1;
+    printf("Enter position: ");
+    scanf("%d", &pos);
+    if(pos < 0 || pos > countNode()){
+        printf("Invalid Position!\n");
+    } else if(pos == 1){
+        insertBeg();
+    } else{
+        newnode = (struct node *)malloc(sizeof(struct node));
+        printf("Enter data to insert at position %d: ",pos);
+        scanf("%d", &newnode->data);
+        newnode -> next = 0;
+        temp = tail -> next;
+        while(i < pos - 1){
+            temp = temp -> next;
+            i++;
+        }
+        newnode -> next = temp -> next;
+        temp -> next = newnode;
+        printf("The new list after inserting element %d at the end is:\n",newnode->data);
+        traverseList();
+    }
 }
 void deleteBeg(){
-
+    struct node *temp;
+    temp = tail -> next;
+    if(tail == 0){
+        printf("The list is empty.");
+    } else if(temp == tail){
+        tail = 0;
+        free(temp);
+    } else{
+        tail -> next = temp -> next;
+        free(temp);
+    }
 }
 void deleteEnd(){
-
+    struct node *current, *previous;
+    current = tail -> next;
+    if(tail == 0){
+        printf("The list is empty.");
+    } else if (current -> next == current){
+        tail = 0;
+        free(current);
+    } else{
+        while(current -> next != tail -> next){
+            previous = current;
+            current = current -> next;
+        }
+        previous -> next = tail -> next;
+        tail = previous;
+        free(current);
+    }
 }
 void deleteFromPos(){
-
+    struct node *current, *nextnode;
+    int pos, i=1;
+    current = tail -> next;
+    printf("Enter position from where you want to delete: ");
+    scanf("%d", &pos);
+    if(pos < 1 || pos > countNode()){
+        printf("Invalid poistion!\n");
+    } else if(pos == 1){
+        deleteBeg();
+        return;
+    } else if(pos == countNode()){
+        deleteEnd();
+        return;
+    }else{
+        while(i < pos - 1){
+            current = current -> next;
+            i++;
+        }
+        nextnode = current -> next;
+        current -> next = nextnode -> next;
+        free(nextnode);
+    }
 }
 void reverseList(){
+    struct node *prev, *current, *nextnode;
+    
+    if(tail == 0){
+        printf("The list is empty.");
+        return;
+    } 
+    current = tail -> next;
+    nextnode = current -> next;
 
+    if(tail -> next == tail){
+        traverseList();
+    } else{
+        while(current != tail){
+            prev = current;
+            current = nextnode;
+            nextnode = current -> next;
+            current -> next = prev;
+        }
+        nextnode -> next = tail;
+        tail = nextnode;
+    }
 }
