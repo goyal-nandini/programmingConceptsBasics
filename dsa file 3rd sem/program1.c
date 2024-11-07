@@ -155,7 +155,7 @@ void insertElement(int arr[], int *size, int pos, int item){
 }
 
 void deleteElement(int arr[],int *size, int pos){
-    if(pos <= 1 || pos > *size){
+    if(pos < 1 || pos > *size){
         printf("\nInvalid Position!\n");
     } else {
         for(int i = pos-1; i < *size-1; i++){

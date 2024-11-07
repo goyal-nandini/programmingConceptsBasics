@@ -11,7 +11,7 @@ void displayMatrix(int r, int c, int mat[r][c]);
 void addMatrix(int r, int c, int mat[r][c], int mat1[r][c], int mat2[r][c]);
 void subMatrix(int r, int c, int mat[r][c], int mat1[r][c], int mat2[r][c]);
 void transposeMatrix(int r, int c, int matT[r][c], int mat[r][c]); 
-void productMatrix(int r, int c, int mat[r][c], int mat1[r][c], int mat2[r][c]);
+void productMatrix(int r1, int c1, int c2, int mat[r1][c2], int mat1[r1][c1], int mat2[c1][c2]);
 
 int main()
 {
@@ -92,7 +92,7 @@ int main()
                 if (c1 == r2)
                 {
                     printf("\nThe multiplication of the matrices is:\n");
-                    productMatrix(r1, c2, matMult, mat1, mat2);
+                    productMatrix(r1, c1, c2, matMult, mat1, mat2);
                     printf("Here is the new matrix:\n");
                     displayMatrix(r1, c2, matMult);
                 }
@@ -162,7 +162,7 @@ void transposeMatrix(int r, int c, int matT[c][r], int mat[r][c])
             matT[j][i] = mat[i][j];
     }
 }
-void productMatrix(int r1, int c2, int mat[r1][c2], int mat1[r1][c2], int mat2[r1][c2])
+void productMatrix(int r1, int c1, int c2, int mat[r1][c2], int mat1[r1][c1], int mat2[c1][c2])
 {
     for (i = 0; i < r1; i++)
     {
