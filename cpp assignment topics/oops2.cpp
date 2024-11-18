@@ -10,7 +10,7 @@ class cars{
         cout << "A red fictional 2006 race car who is described by John Lasseter in the Los Angeles Times" << endl;
     }
 
-    public:
+    public: // called access specifier
     // behaviour or member functions
     int speed(){
         return 40;

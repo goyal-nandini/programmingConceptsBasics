@@ -1,6 +1,9 @@
 // default constructor 
 #include <iostream>
 using namespace std;
+// ##important:
+// A constructor initializes an object by giving its data members initial values.
+// A constructor is called automatically when you create an object.
 
 class cars{
     string name;
