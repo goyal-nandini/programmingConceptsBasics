@@ -32,7 +32,8 @@ int main(){
     cout << "level is  " << a.getLevel() << endl;
     cout << " health is " << a.getHealth() << endl;
 
-    //dynamicallly
+    //dynamicallly allocating as we did in normal data type
+    // data_type* ptr_varible = new data_type;
     Cars *b = new Cars;
     b->setLevel('A');
     b->setHealth(70);
