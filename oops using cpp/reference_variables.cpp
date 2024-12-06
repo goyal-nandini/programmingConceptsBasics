@@ -29,6 +29,15 @@ int main() {
         << y << a 
         << m; //m is a reference to t. However, since t is uninitialized, the value printed for m will be undefined (garbage value).
 
+        // int &g = 50; // invalid!!
+        //The reason is that references are meant to provide an alias to an existing variable, and in the case of a literal like
+        // 50, it doesn't have a memory location that can be aliased.
+
+        const int &g = 50;
+        // here, g is a reference to a constant, and it can refer to a temporary value like 50.
+        cout << endl << g;
+
+
         
 
 
